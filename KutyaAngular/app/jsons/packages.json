@@ -1,0 +1,29 @@
+[
+  {
+    "id": "sp1",
+    "name": "sp1",
+    "type": "street",
+    "engineId": "en1",
+    "exhaustId": "ex1",
+    "rimsId": "r1",
+    "tiresId": "t1"
+  },
+  {
+    "id": "sp2",
+    "name": "sp2",
+    "type": "street",
+    "engineId": "en2",
+    "exhaustId": "ex2",
+    "rimsId": "r2",
+    "tiresId": "t2"
+  },
+  {
+    "id": "ep1",
+    "name": "ep1",
+    "type": "eco",
+    "engineId": "en2",
+    "exhaustId": "ex2",
+    "rimsId": "r2",
+    "tiresId": "t2"
+  }
+]

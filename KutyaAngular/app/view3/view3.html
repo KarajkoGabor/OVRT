@@ -1,0 +1,20 @@
+<p>1: Select a car || 2: Select a starter package ||<b>3: Tuning</b> || 4:Pay the ride || 5:Happiness!</p>
+
+<ul>
+    <li ng-repeat="ct in componentTypes">
+        <Button ng-click="setCurrentComponentType(ct)">{{ct}}</Button>
+    </li>
+</ul>
+
+
+<ul>
+    <li ng-repeat="component in components | filter:currentComponentType" ng-click="setComponent(component)">
+        <img ng-src="{{component.imageUrl}}" >  {{component.name}}
+    </li>
+</ul>
+
+<a href="#/view4/?ids={{ids[0]}},{{ids[1]}},{{ids[2]}},{{ids[3]}},{{ids[4]}}">
+    <button type = "BUTTON">Next</button>
+</a>
+
+<p>{{currentEngineId}}</p>

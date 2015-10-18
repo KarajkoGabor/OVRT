@@ -1,0 +1,44 @@
+/**
+ * Created by Laci on 2015.10.15..
+ */
+'use strict';
+
+angular.module('myApp.view3', ['ngRoute'])
+
+    .config(['$routeProvider', function($routeProvider) {
+        $routeProvider.when('/view3/', {
+            templateUrl: 'view3/view3.html',
+            controller: 'View3Ctrl'
+        });
+    }])
+
+    .controller('View3Ctrl', ['$scope', '$routeParams', '$http',
+        function($scope, $routeParams, $http) {
+            $scope.ids=$routeParams.ids.split(',');
+            $scope.componentTypes=["engine","rims","tires","exhaust"];
+
+            $http.get('jsons/components.json').success(function(data) {
+                $scope.components = data;
+                $scope.currentComponentType = "rims";
+            });
+
+            $scope.setCurrentComponentType = function(selectedString) {
+                $scope.currentComponentType = selectedString;
+            };
+
+            $scope.setComponent = function(component) {
+                if (component.type==="engine"){
+                    $scope.ids[1]=component.id;
+                }
+                if (component.type==="rims"){
+                    $scope.ids[2]=component.id;
+                }
+                if (component.type==="tires"){
+                    $scope.ids[3]=component.id;
+                }
+                if (component.type==="exhaust"){
+                    $scope.ids[4]=component.id;
+                }
+            };
+
+        }]);

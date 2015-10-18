@@ -1,0 +1,12 @@
+[
+  {
+    "id": "carA",
+    "imageUrl":"imgs/cars/carA.png",
+    "name": "carA"
+  },
+  {
+    "id": "carB",
+    "imageUrl":"imgs/cars/carB.png",
+    "name": "carB"
+  }
+]

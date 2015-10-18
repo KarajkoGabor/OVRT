@@ -1,0 +1,54 @@
+[
+  {
+    "id": "t1",
+    "type": "tires",
+    "name": "tireName1",
+    "price": "100",
+    "imageUrl": "imgs/package.png"
+  },
+  {
+    "id": "t2",
+    "type": "tires",
+    "name": "tireName2",
+    "price": "200",
+    "imageUrl": "imgs/package.png"
+  },
+  {
+  "id": "ex1",
+  "type": "exhaust",
+  "name": "exhaustName1",
+  "price": "100",
+    "imageUrl": "imgs/package.png"
+  },
+  {
+  "id": "ex2",
+  "type": "exhaust",
+  "name": "exhaustName2",
+  "price": "100",
+  "imageUrl": "imgs/package.png"
+},{
+  "id": "en1",
+  "type": "engine",
+  "name": "engineName1",
+  "price": "100",
+  "imageUrl": "imgs/package.png"
+  },{
+  "id": "en2",
+  "type": "engine",
+  "name": "engineName2",
+  "price": "100",
+  "imageUrl": "imgs/package.png"
+  },{
+  "id": "r1",
+  "type": "rims",
+  "name": "rimsName1",
+  "price": "100",
+  "imageUrl": "imgs/package.png"
+  },{
+  "id": "r2",
+  "type": "rims",
+  "name": "rimsName2",
+  "price": "100",
+  "imageUrl": "imgs/package.png"
+  }
+]

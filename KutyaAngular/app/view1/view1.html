@@ -1,0 +1,7 @@
+<p><b>1: Select a car</b> || 2: Select a starter package || 3: Tuning || 4:Pay the ride || 5:Happiness!</p>
+<ul>
+    <li ng-repeat="car in cars">
+        <a href="#/view2/{{car.id}}"><img ng-src="{{car.imageUrl}}"></a>
+        <a href="#/view2/{{car.id}}"> {{car.name}} </a>
+    </li>
+</ul>
