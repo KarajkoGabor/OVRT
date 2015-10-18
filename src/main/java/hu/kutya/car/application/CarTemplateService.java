@@ -1,5 +1,6 @@
 package hu.kutya.car.application;
 
+import java.util.Set;
 import java.util.UUID;
 
 import hu.kutya.car.domain.CarTemplate;
@@ -21,5 +22,9 @@ public class CarTemplateService {
         }
 
         return ret;
+    }
+
+    public Set<CarTemplate> getAll() {
+        return carTemplateRepository.getCarTemplates();
     }
 }
