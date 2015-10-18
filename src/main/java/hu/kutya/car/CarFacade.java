@@ -1,7 +1,6 @@
 package hu.kutya.car;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.Set;
 import java.util.UUID;
 import java.util.stream.Collectors;
@@ -31,11 +30,6 @@ public class CarFacade {
         return Converter.convert(carTemplateService.getById(id));
     }
 
-    public List<TrimLevelOutput> getTrimLevelsOfCarTemplate(UUID carTemplateId) {
-        CarTemplate carTemplate = carTemplateService.getById(carTemplateId);
-        return carTemplate.getTrimLevels().stream().map(Converter::convert).collect(Collectors.toList());
-    }
-
     public CarOutput buildCar(UUID carTemplateId, UUID trimLevelId) {
         /*
         CarTemplate carTemplate = carTemplateService.getById(carTemplateId);
@@ -53,12 +47,14 @@ public class CarFacade {
 
     private static class Converter {
         static CarTemplateOutput convert(CarTemplate carTemplate) {
+
             return new CarTemplateOutput(
                     carTemplate.getId(),
                     carTemplate.getImageUrl(),
                     carTemplate.getName(),
                     carTemplate.getMake(),
-                    carTemplate.getBasePrice()
+                    carTemplate.getBasePrice(),
+                    carTemplate.getTrimLevels().stream().map(Converter::convert).collect(Collectors.toList())
             );
         }
 

@@ -21,6 +21,12 @@ public class TrimLevel {
         return name;
     }
 
+    public TrimLevel(int price, String name) {
+        this.id = UUID.randomUUID();
+        this.price = price;
+        this.name = name;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -36,5 +42,21 @@ public class TrimLevel {
     @Override
     public int hashCode() {
         return Objects.hash(id);
+    }
+
+    //can be removed when a proper mongodb mapper is implemented
+    //also we could think about a way of wrapping the class into a proxy to inject this functionality automatically
+    @Deprecated
+    public static class Restorer {
+        public static TrimLevel restore(
+                UUID id,
+                String name,
+                int price
+        ) {
+            TrimLevel trimLevel = new TrimLevel(price, name);
+            trimLevel.id = id;
+
+            return trimLevel;
+        }
     }
 }

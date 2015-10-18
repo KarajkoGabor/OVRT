@@ -33,11 +33,6 @@ public class CarTemplateController {
         return carFacade.getCarTemplates();
     }
 
-    @RequestMapping(value = "/{carTemplateId}/trim_levels", method = RequestMethod.GET)
-    public List<TrimLevelOutput> getTrimLevelsOfCarTemplate(@Valid @PathVariable("carTemplateId") UUID carTemplateId) {
-        return carFacade.getTrimLevelsOfCarTemplate(carTemplateId);
-    }
-
     @RequestMapping(value = "/{carTemplateId}/trim_levels/{trimLevelId}/build", method = RequestMethod.POST)
     public CarOutput buildCar(
             @Valid @PathVariable("carTemplateId") UUID carTemplateId,

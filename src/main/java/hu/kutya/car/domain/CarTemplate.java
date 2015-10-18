@@ -66,7 +66,7 @@ public class CarTemplate {
     //also we could think about a way of wrapping the class into a proxy to inject this functionality automatically
     @Deprecated
     public static class Restorer {
-        public CarTemplate restore(
+        public static CarTemplate restore(
                 UUID id,
                 String imageUrl,
                 String name,

@@ -1,8 +1,11 @@
 package hu.kutya.car.infrastructure.dto.output;
 
+import java.util.List;
 import java.util.UUID;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+
+import org.springframework.util.Assert;
 
 public class CarTemplateOutput {
     @JsonProperty
@@ -20,12 +23,16 @@ public class CarTemplateOutput {
     @JsonProperty
     private int basePrice;
 
-    public CarTemplateOutput(UUID id, String imageUrl, String name, String make, int basePrice) {
+    private List<TrimLevelOutput> trimLevels;
+
+    public CarTemplateOutput(UUID id, String imageUrl, String name, String make, int basePrice, List<TrimLevelOutput> trimLevels) {
+        Assert.notNull(trimLevels);
         this.id = id;
         this.imageUrl = imageUrl;
         this.name = name;
         this.make = make;
         this.basePrice = basePrice;
+        this.trimLevels = trimLevels;
     }
 
     public UUID getId() {
@@ -46,5 +53,9 @@ public class CarTemplateOutput {
 
     public int getBasePrice() {
         return basePrice;
+    }
+
+    public List<TrimLevelOutput> getTrimLevels() {
+        return trimLevels;
     }
 }
