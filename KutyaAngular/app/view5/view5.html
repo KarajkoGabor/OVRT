@@ -1,0 +1,7 @@
+<p>1: Select a car || 2: Select a starter package ||3: Tuning || 4:Pay the ride || <b>5:Happiness!</b></p>
+
+Enjoy your ride
+
+<div ng-repeat="selectedCar in cars" ng-show="selectedCar.id == ids[0]">
+    {{selectedCar.id}} <div><img ng-src="{{selectedCar.imageUrl}}"></div>
+</div>
