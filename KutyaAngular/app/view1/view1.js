@@ -2,13 +2,10 @@
 
 angular.module('myApp.view1', ['ngRoute'])
 
-.controller('View1Ctrl', ['$scope', '$http', 'Page',
-      function($scope, $http, Page) {
+.controller('View1Ctrl', ['$scope', 'CarsService', 'Page',
+      function($scope, CarsService, Page) {
           Page.setTitle('Select a car');
           Page.setCurrentStep(1);
           Page.setProgressBarClass('');
-        $http.get('jsons/cars.json').success(function(data) {
-          $scope.cars = data;
-        });
-
+          $scope.cars = CarsService.query();
 }]);
