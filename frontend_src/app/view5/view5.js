@@ -4,16 +4,11 @@
 'use strict';
 
 angular.module('myApp.view5', ['ngRoute'])
-
-    .config(['$routeProvider', function($routeProvider) {
-        $routeProvider.when('/view5/', {
-            templateUrl: 'view5/view5.html',
-            controller: 'View5Ctrl'
-        });
-    }])
-
-    .controller('View5Ctrl', ['$scope', '$routeParams', '$http',
-        function($scope, $routeParams, $http) {
+    .controller('View5Ctrl', ['$scope', '$routeParams', '$http', 'Page',
+        function($scope, $routeParams, $http, Page) {
+            Page.setTitle('Happiness!');
+            Page.setCurrentStep(5);
+            Page.setProgressBarClass('progress-bar-success');
             $scope.ids=$routeParams.ids.split(',');
             $http.get('jsons/cars.json').success(function(data) {
                 $scope.cars = data;

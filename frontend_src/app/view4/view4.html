@@ -1,14 +1,16 @@
-<p>1: Select a car || 2: Select a starter package ||3: Tuning || <b>4:Pay the ride</b> || 5:Happiness!</p>
-
-<ul ng-repeat="ct in componentTypes">
-    <li><b>{{ct}}</b>
-    <div ng-repeat="selectedComponent in components" ng-show="selectedComponent.id == ids[componentTypes.indexOf(ct)+1]">
-        {{selectedComponent.id}} {{selectedComponent.price}}
-    </div></li>
+<ul class="list-group">
+    <li class="list-group-item" ng-repeat="ct in componentTypes">
+        <div ng-repeat="selectedComponent in components" ng-show="selectedComponent.id == ids[componentTypes.indexOf(ct)+1]">
+            <b>{{ct}}:</b> {{selectedComponent.id}}
+            <span class="badge">{{selectedComponent.price}}</span>
+        </div>
+    </li>
 </ul>
 
 
-
-<a href="#/view5/?ids={{ids[0]}},{{ids[1]}},{{ids[2]}},{{ids[3]}},{{ids[4]}}">
-    <button type = "BUTTON">Pay!</button>
-</a>
+<nav>
+    <ul class="pager">
+        <li class="previous"></li>
+        <li class="next"><a href="view5?ids={{ids[0]}},{{ids[1]}},{{ids[2]}},{{ids[3]}},{{ids[4]}}">Pay! <span aria-hidden="true">&rarr;</span></a></li>
+    </ul>
+</nav>

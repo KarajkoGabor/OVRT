@@ -6,21 +6,57 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>My AngularJS App</title>
+  <title>KutyaApp</title>
   <meta name="description" content="">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="bower_components/html5-boilerplate/dist/css/normalize.css">
   <link rel="stylesheet" href="bower_components/html5-boilerplate/dist/css/main.css">
+  <link rel="stylesheet" href="bower_components/bootstrap-css-only/css/bootstrap.min.css">
+  <link rel="stylesheet" href="bower_components/bootstrap-css-only/css/bootstrap-theme.min.css">
   <link rel="stylesheet" href="app.css">
   <script src="bower_components/html5-boilerplate/dist/js/vendor/modernizr-2.8.3.min.js"></script>
+  <base href="/app/">
 </head>
 <body>
-
   <!--[if lt IE 7]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
   <![endif]-->
 
-  <div ng-view></div>
+
+  <div class="container" ng-controller="mainController">
+    <p></p>
+    <div class="row">
+      <div class="col-md-2 col-md-offset-1"><div class="numberCircle" ng-class="Page.currentStep() === 1 ? 'active' : ''">1</div></div>
+      <div class="col-md-2"><div class="numberCircle" ng-class="Page.currentStep() === 2 ? 'active' : ''">2</div></div>
+      <div class="col-md-2"><div class="numberCircle" ng-class="Page.currentStep() === 3 ? 'active' : ''">3</div></div>
+      <div class="col-md-2"><div class="numberCircle" ng-class="Page.currentStep() === 4 ? 'active' : ''">4</div></div>
+      <div class="col-md-2"><div class="numberCircle" ng-class="Page.currentStep() === 5 ? 'active' : ''">5</div></div>
+    </div>
+    <div class="row">
+      <div class="col-md-2 col-md-offset-1 centeredText" ng-class="Page.currentStep() === 1 ? 'active' : ''">Select a car</div>
+      <div class="col-md-2 centeredText" ng-class="Page.currentStep() === 2 ? 'active' : ''">Select a starter package</div>
+      <div class="col-md-2 centeredText" ng-class="Page.currentStep() === 3 ? 'active' : ''">Tuning!</div>
+      <div class="col-md-2 centeredText" ng-class="Page.currentStep() === 4 ? 'active' : ''">Pay the ride</div>
+      <div class="col-md-2 centeredText" ng-class="Page.currentStep() === 5 ? 'active' : ''">Happiness!</div>
+    </div>
+    <p></p>
+    <div class="progress" >
+      <div class="progress-bar {{Page.progressBarClass()}} active progress-bar-striped" role="progressbar" aria-valuenow="{{100/Page.numberOfSteps()*Page.currentStep()}}" aria-valuemin="0" aria-valuemax="100" style="width: {{100/Page.numberOfSteps()*Page.currentStep()}}%;">
+        <span class="sr-only">{{100/Page.numberOfSteps()*Page.currentStep()}}% Complete</span>
+      </div>
+    </div>
+
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title">{{Page.title()}}</h3>
+          </div>
+          <div class="panel-body">
+            <div ng-view></div>
+          </div>
+        </div>
+
+  </div>
+
 
 
   <!-- In production use:
@@ -28,6 +64,7 @@
   -->
   <script src="bower_components/angular/angular.js"></script>
   <script src="bower_components/angular-route/angular-route.js"></script>
+  <script src="bower_components/angular-bootstrap/ui-bootstrap.min.js"></script>
   <script src="app.js"></script>
   <script src="view1/view1.js"></script>
   <script src="view2/view2.js"></script>

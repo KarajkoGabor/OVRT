@@ -1,15 +1,14 @@
-<p>1: Select a car || <b>2: Select a starter package</b> || 3: Tuning || 4:Pay the ride || 5:Happiness!</p>
-
-
-<ul>
-    <li ng-repeat="pt in packageTypes">
-        <Button ng-click="setCurrentPackageType(pt)">{{pt}}</Button>
-    </li>
+<ul class="nav nav-tabs">
+    <li ng-repeat="pt in packageTypes" role="presentation"  ng-click="setCurrentPackageType(pt)" ng-class="currentPackageType === pt ? 'active' : ''"><a href="">{{pt}}</a></li>
 </ul>
-
-<ul>
-    <li ng-repeat="package in packages | filter:currentPackageType">
-        <a href="#/view3/?ids={{chosenCarId}},{{package.engineId}},{{package.rimsId}},{{package.tiresId}},{{package.exhaustId}}"><img ng-src="imgs/package.png"></a>
-        <a href="#/view3/?ids={{chosenCarId}},{{package.engineId}},{{package.rimsId}},{{package.tiresId}},{{package.exhaustId}}">{{package.name}}</a>
-    </li>
-</ul>
+<p></p>
+<div class="row">
+    <div class="col-xs-6 col-md-3" ng-repeat="package in packages | filter:currentPackageType">
+        <div>
+            <a class="thumbnail" href="view3?ids={{chosenCarId}},{{package.engineId}},{{package.rimsId}},{{package.tiresId}},{{package.exhaustId}}"><img ng-src="imgs/package.png"></a>
+            <div class="caption">
+                <h3 class="centeredText">{{package.name}}</h3>
+            </div>
+        </div>
+    </div>
+</div>

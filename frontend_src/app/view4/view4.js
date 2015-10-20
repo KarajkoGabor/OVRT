@@ -5,15 +5,11 @@
 
 angular.module('myApp.view4', ['ngRoute'])
 
-    .config(['$routeProvider', function($routeProvider) {
-        $routeProvider.when('/view4/', {
-            templateUrl: 'view4/view4.html',
-            controller: 'View4Ctrl'
-        });
-    }])
-
-    .controller('View4Ctrl', ['$scope', '$routeParams', '$http',
-        function($scope, $routeParams, $http) {
+    .controller('View4Ctrl', ['$scope', '$routeParams', '$http', 'Page',
+        function($scope, $routeParams, $http, Page) {
+            Page.setTitle('Pay the ride');
+            Page.setCurrentStep(4);
+            Page.setProgressBarClass('progress-bar-warning');
             $scope.ids=$routeParams.ids.split(',');
             $scope.componentTypes=["engine","rims","tires","exhaust"];
 

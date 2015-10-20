@@ -32,3 +32,32 @@
 .selectedComponent {
   font-weight: bold;
 }
+
+.numberCircle {
+  border-radius: 50%;
+
+  width: 36px;
+  height: 36px;
+  padding: 0px;
+  margin: 0 auto;
+
+  background: #fff;
+  border: 2px solid #eee;
+  color: #eee;
+  text-align: center;
+
+  font: 32px Arial, sans-serif;
+}
+
+.numberCircle.active {
+  border: 2px solid #000;
+  color: #000;
+}
+
+.centeredText {
+  text-align: center;
+}
+
+.centeredText.active {
+  font-weight: bold;
+}

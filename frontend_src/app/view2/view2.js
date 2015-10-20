@@ -2,19 +2,16 @@
 
 angular.module('myApp.view2', ['ngRoute'])
 
-.config(['$routeProvider', function($routeProvider) {
-  $routeProvider.when('/view2/:carId', {
-    templateUrl: 'view2/view2.html',
-    controller: 'View2Ctrl'
-  });
-}])
 
-.controller('View2Ctrl', ['$scope', '$routeParams', '$http',
-      function($scope, $routeParams, $http) {
+.controller('View2Ctrl', ['$scope', '$routeParams', '$http', 'Page',
+      function($scope, $routeParams, $http, Page) {
+          Page.setTitle('Select a starter package');
+          Page.setCurrentStep(2);
+          Page.setProgressBarClass('');
         $scope.chosenCarId = $routeParams.carId;
         $http.get('jsons/packages.json').success(function(data) {
             $scope.packages = data;
-            $scope.currentPackageType="street";
+            $scope.currentPackageType="Street";
         });
 
           $scope.packageTypes=["Street","Off Road","Racing","Eco"];
