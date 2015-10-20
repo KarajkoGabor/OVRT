@@ -9,19 +9,15 @@ angular.module('myApp.view2', ['ngRoute'])
   });
 }])
 
-.controller('View2Ctrl', ['$scope', '$routeParams', '$http',
-      function($scope, $routeParams, $http) {
-        $scope.chosenCarId = $routeParams.carId;
-        $http.get('jsons/packages.json').success(function(data) {
-            $scope.packages = data;
-            $scope.currentPackageType="street";
-        });
-
+.controller('View2Ctrl', ['$scope', '$routeParams', 'PackagesService',
+      function($scope, $routeParams, PackagesService) {
+          $scope.chosenCarId = $routeParams.carId;
+          $scope.packages = PackagesService.query();
+          $scope.currentPackageType="street";
           $scope.packageTypes=["Street","Off Road","Racing","Eco"];
 
           $scope.setCurrentPackageType = function(selectedString) {
               $scope.currentPackageType = selectedString;
           };
-
 
 }]);
