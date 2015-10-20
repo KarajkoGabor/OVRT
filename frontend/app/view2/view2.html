@@ -1,11 +1,11 @@
-<ul class="nav nav-tabs">
+<!--<ul class="nav nav-tabs">
     <li ng-repeat="pt in packageTypes" role="presentation"  ng-click="setCurrentPackageType(pt)" ng-class="currentPackageType === pt ? 'active' : ''"><a href="">{{pt}}</a></li>
 </ul>
-<p></p>
+<p></p>-->
 <div class="row">
-    <div class="col-xs-6 col-md-3" ng-repeat="package in packages | filter:currentPackageType">
+    <div class="col-xs-6 col-md-3" ng-repeat="package in car.trimLevels">
         <div>
-            <a class="thumbnail" href="view3?ids={{chosenCarId}},{{package.engineId}},{{package.rimsId}},{{package.tiresId}},{{package.exhaustId}}"><img ng-src="imgs/package.png"></a>
+            <a class="thumbnail" href="#view3?ids={{chosenCarId}},en1,r1,t1,ex1"><img ng-src="imgs/package.png"></a>
             <div class="caption">
                 <h3 class="centeredText">{{package.name}}</h3>
             </div>

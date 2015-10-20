@@ -21,7 +21,7 @@ app.config(['$routeProvider', '$locationProvider', function($routeProvider, $loc
       when('/view4', {templateUrl: 'view4/view4.html', controller: 'View4Ctrl' }).
       when('/view5', {templateUrl: 'view5/view5.html', controller: 'View5Ctrl' }).
       otherwise({redirectTo: '/view1'});
-  $locationProvider.html5Mode(true);
+  $locationProvider.html5Mode(false);
 }]);
 
 app.factory('Page', function(){

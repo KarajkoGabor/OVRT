@@ -2,11 +2,10 @@
 <div class="row">
     <div class="col-md-12 centeredText" ng-repeat="selectedCar in cars" ng-show="selectedCar.id == ids[0]">
         <div>
-            <img ng-src="{{selectedCar.imageUrl}}">
+            <a class="thumbnail"><img ng-src="{{selectedCar.imageUrl}}"></a>
             <div class="caption">
                 <h3 class="centeredText">{{selectedCar.make}} {{selectedCar.name}}</h3>
             </div>
         </div>
     </div>
-    ...
 </div>

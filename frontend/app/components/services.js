@@ -18,6 +18,17 @@ kutyaServices.factory('PackagesService', ['$resource',
         });
     }]);
 
+kutyaServices.factory('TrimLevelService', ['$resource',
+    function($resource){
+        return {
+            query: function(carUUID) {
+                return $resource(backendURI + '/car_templates/' + carUUID, {}, {
+                    query: {method:'GET', isArray:false}
+                }).query();
+            }
+        }
+    }]);
+
 kutyaServices.factory('ComponentsService', ['$resource',
     function($resource){
         return $resource('jsons/components.json', {}, {
