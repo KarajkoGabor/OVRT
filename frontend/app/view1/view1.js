@@ -7,5 +7,6 @@ angular.module('myApp.view1', ['ngRoute'])
           Page.setTitle('Select a car');
           Page.setCurrentStep(1);
           Page.setProgressBarClass('');
+
           $scope.cars = CarsService.query();
 }]);

@@ -1,11 +1,12 @@
 /**
  * Created by Laci on 2015.10.20..
  */
-var kutyaServices = angular.module('kutyaServices', ['ngResource']);
+var kutyaServices = angular.module('kutyaServices', ['ngResource']),
+    backendURI = 'http://localhost:8080';
 
 kutyaServices.factory('CarsService', ['$resource',
     function($resource){
-        return $resource('jsons/cars.json', {}, {
+        return $resource(backendURI + '/car_templates', {}, {
             query: {method:'GET', isArray:true}
         });
     }]);
