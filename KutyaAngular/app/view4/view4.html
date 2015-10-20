@@ -1,0 +1,16 @@
+<ul class="list-group">
+    <li class="list-group-item" ng-repeat="ct in componentTypes">
+        <div ng-repeat="selectedComponent in components" ng-show="selectedComponent.id == ids[componentTypes.indexOf(ct)+1]">
+            <b>{{ct}}:</b> {{selectedComponent.id}}
+            <span class="badge">{{selectedComponent.price}}</span>
+        </div>
+    </li>
+</ul>
+
+
+<nav>
+    <ul class="pager">
+        <li class="previous"></li>
+        <li class="next"><a href="view5?ids={{ids[0]}},{{ids[1]}},{{ids[2]}},{{ids[3]}},{{ids[4]}}">Pay! <span aria-hidden="true">&rarr;</span></a></li>
+    </ul>
+</nav>

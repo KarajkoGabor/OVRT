@@ -1,0 +1,22 @@
+<ul class="nav nav-tabs">
+    <li ng-repeat="ct in componentTypes" role="presentation" ng-click="setCurrentComponentType(ct)" ng-class="currentComponentType === ct ? 'active' : ''"><a href="">{{ct}}</a></li>
+</ul>
+<p></p>
+<div class="row">
+    <div class="col-xs-6 col-md-3" ng-repeat="component in components | filter:currentComponentType" ng-click="setComponent(component)">
+        <div>
+            <a class="thumbnail" href="" ng-class="{ 'active': ids[componentTypes.indexOf(currentComponentType)+1] == component.id }"><img ng-src="{{component.imageUrl}}" ></a>
+            <div class="caption">
+                <h3 class="centeredText" ng-class="{ 'selectedComponent': ids[componentTypes.indexOf(currentComponentType)+1] == component.id }">{{component.name}}</h3>
+            </div>
+        </div>
+    </div>
+</div>
+
+<nav>
+    <ul class="pager">
+        <li class="previous"></li>
+        <li class="next"><a href="view4?ids={{ids[0]}},{{ids[1]}},{{ids[2]}},{{ids[3]}},{{ids[4]}}">Next <span aria-hidden="true">&rarr;</span></a></li>
+    </ul>
+</nav>
+

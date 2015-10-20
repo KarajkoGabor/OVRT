@@ -1,0 +1,12 @@
+<h1 class="centeredText">Enjoy your ride!</h1>
+<div class="row">
+    <div class="col-md-12 centeredText" ng-repeat="selectedCar in cars" ng-show="selectedCar.id == ids[0]">
+        <div>
+            <img ng-src="{{selectedCar.imageUrl}}">
+            <div class="caption">
+                <h3 class="centeredText">{{selectedCar.id}}</h3>
+            </div>
+        </div>
+    </div>
+    ...
+</div>
