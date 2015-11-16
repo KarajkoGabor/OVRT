@@ -108,13 +108,15 @@ public class TrimLevel {
             this.upholstery = upholstery;
         }
 
-        public void withAccessory(Accessory accessory) {
+        public Builder withAccessory(Accessory accessory) {
             Assert.notNull(accessory);
 
             if (accessories.putIfAbsent(accessory.getClass().getName(), accessory) != null) {
                 throw new IllegalArgumentException(
                         "TrimLevel already contains an accessory of type: " + accessory.getClass().getName());
             }
+
+            return this;
         }
 
         public TrimLevel build() {

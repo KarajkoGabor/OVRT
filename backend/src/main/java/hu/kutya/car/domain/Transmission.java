@@ -1,5 +1,6 @@
 package hu.kutya.car.domain;
 
+import java.util.HashSet;
 import java.util.Set;
 import java.util.UUID;
 
@@ -11,6 +12,10 @@ public class Transmission extends BaseCarPart {
 
     @JsonProperty
     private int numOfSpeeds;
+
+    public Transmission(UUID id, int price, int power) {
+        this(id, price, power, new HashSet<>());
+    }
 
     public Transmission(
             UUID id,

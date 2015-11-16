@@ -1,4 +1,9 @@
 package hu.kutya.car.domain;
 
-public class CarCommand {
+import java.time.Instant;
+import java.util.UUID;
+
+public interface CarCommand {
+    UUID getCarId();
+    Instant getCreated();
 }

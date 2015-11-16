@@ -1,5 +1,6 @@
 package hu.kutya.car.domain;
 
+import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 import java.util.UUID;
@@ -20,6 +21,10 @@ abstract public class BaseCarPart implements CarPart {
 
     private Set<CompatibilityHolder> compatibilities;
 
+    public BaseCarPart(UUID id, int price) {
+        this(id, price, new HashSet<>());
+    }
+
     public BaseCarPart(
             UUID id,
             int price,
@@ -27,7 +32,7 @@ abstract public class BaseCarPart implements CarPart {
     ) {
         Assert.notNull(id);
         Assert.isTrue(price >= 0);
-        Assert.notEmpty(compatibilities);
+        Assert.notNull(compatibilities);
 
         this.id = id;
         this.price = price;
@@ -49,6 +54,12 @@ abstract public class BaseCarPart implements CarPart {
         return compatibilities.contains(new CompatibilityHolder(carTemplate, trimLevel));
     }
 
+    public BaseCarPart setCompatibility(CarTemplate carTemplate, TrimLevel trimLevel) {
+        compatibilities.add(new CompatibilityHolder(carTemplate, trimLevel));
+
+        return this;
+    }
+
     public static class CompatibilityHolder {
         private CarTemplate carTemplate;
         private TrimLevel trimLevel;
@@ -56,6 +67,11 @@ abstract public class BaseCarPart implements CarPart {
         public CompatibilityHolder(CarTemplate carTemplate, TrimLevel trimLevel) {
             this.carTemplate = carTemplate;
             this.trimLevel = trimLevel;
+        }
+
+        @Override
+        public int hashCode() {
+            return Objects.hash(carTemplate, trimLevel);
         }
 
         @Override
@@ -69,11 +85,6 @@ abstract public class BaseCarPart implements CarPart {
             CompatibilityHolder that = (CompatibilityHolder) o;
             return Objects.equals(carTemplate, that.carTemplate) &&
                     Objects.equals(trimLevel, that.trimLevel);
-        }
-
-        @Override
-        public int hashCode() {
-            return Objects.hash(carTemplate, trimLevel);
         }
     }
 }

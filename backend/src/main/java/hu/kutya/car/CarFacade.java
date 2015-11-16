@@ -32,7 +32,7 @@ public class CarFacade {
 
     public CarOutput buildCar(UUID carTemplateId, UUID trimLevelId) {
         /*
-        CarTemplate carTemplate = carTemplateService.getById(carTemplateId);
+        CarTemplate carTemplate = carTemplateService.getByCarId(carTemplateId);
         Optional<TrimLevel> trimLevel = carTemplate.getTrimLevels().stream().filter(internalTrimLevel -> {
             return internalTrimLevel
                     .getId().equals(trimLevelId);

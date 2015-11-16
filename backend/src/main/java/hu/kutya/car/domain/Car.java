@@ -18,13 +18,30 @@ public class Car {
     private Radio radio;
     private SpeakerSet speakerSet;
 
-    public Car(CarTemplate template, TrimLevel trimLevel) {
+    public Car(UUID id, CarTemplate template, TrimLevel trimLevel) {
         Assert.notNull(template);
         Assert.notNull(trimLevel);
+        Assert.notNull(id);
 
+        this.id = id;
         this.template = template;
         this.trimLevel = trimLevel;
-        this.id = UUID.randomUUID();
+
+        this.engine = trimLevel.getEngine();
+        this.transmission = trimLevel.getTransmission();
+        this.upholstery = trimLevel.getUpholstery();
+
+        for (Accessory accessory : trimLevel.getAccessories()) {
+            if (accessory instanceof GPS) {
+                this.gps = (GPS) accessory;
+            } else if (accessory instanceof Radio) {
+                this.radio = (Radio) accessory;
+            } else if (accessory instanceof SpeakerSet) {
+                this.speakerSet = (SpeakerSet) accessory;
+            } else {
+                throw new IllegalArgumentException("Encountered unrecognized accessory");
+            }
+        }
     }
 
     public CarTemplate getTemplate() {
