@@ -6,18 +6,21 @@ import java.util.Set;
 import java.util.UUID;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonTypeInfo;
 
 import org.springframework.util.Assert;
 
-@JsonTypeInfo(use = JsonTypeInfo.Id.CLASS, include = JsonTypeInfo.As.PROPERTY, property = "type")
 abstract public class BaseCarPart implements CarPart {
-
     @JsonProperty
     private UUID id;
 
     @JsonProperty
     private int price;
+
+    @JsonProperty
+    private String imageUrl;
+
+    @JsonProperty
+    private String name;
 
     private Set<CompatibilityHolder> compatibilities;
 
@@ -47,6 +50,22 @@ abstract public class BaseCarPart implements CarPart {
     @Override
     public int getPrice() {
         return price;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     @Override

@@ -3,6 +3,7 @@ package hu.kutya.car.domain;
 import java.util.*;
 
 import com.google.common.collect.ImmutableSet;
+import hu.kutya.car.exception.TrimLevelNotFoundException;
 
 import org.springframework.util.Assert;
 
@@ -56,6 +57,16 @@ public class CarTemplate {
 
     public Set<TrimLevel> getTrimLevels() {
         return trimLevels;
+    }
+
+    public TrimLevel getTrimLevel(UUID id) {
+        for (TrimLevel trimLevel : trimLevels) {
+            if (trimLevel.getId().equals(id)) {
+                return trimLevel;
+            }
+        }
+
+        throw new TrimLevelNotFoundException();
     }
 
     @Override

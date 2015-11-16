@@ -29,6 +29,11 @@ public class AddPartToCarCommand implements CarCommand {
     }
 
     @Override
+    public String getId() {
+        return id;
+    }
+
+    @Override
     public UUID getCarId() {
         return carId;
     }
@@ -36,7 +41,6 @@ public class AddPartToCarCommand implements CarCommand {
     public UUID getPartId() {
         return partId;
     }
-
 
     @Override
     public Instant getCreated() {

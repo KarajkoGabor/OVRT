@@ -16,12 +16,12 @@ public class CarTemplateService {
     private CarTemplateRepository carTemplateRepository;
 
     public CarTemplate getById(UUID id) {
-        CarTemplate ret = carTemplateRepository.getById(id);
-        if (ret == null) {
+        CarTemplate carTemplate = carTemplateRepository.getById(id);
+        if (carTemplate == null) {
             throw new CarTemplateNotFoundException();
         }
 
-        return ret;
+        return carTemplate;
     }
 
     public Set<CarTemplate> getAll() {

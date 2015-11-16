@@ -1,6 +1,8 @@
 package hu.kutya.car.domain;
 
+import java.time.Instant;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.UUID;
 
 import hu.kutya.car.exception.IncompatibleCarPartException;
@@ -14,15 +16,20 @@ public class Car {
     private Engine engine;
     private Transmission transmission;
     private Upholstery upholstery;
-    private GPS gps;
-    private Radio radio;
-    private SpeakerSet speakerSet;
+    private Optional<GPS> gps = Optional.empty();
+    private Optional<Radio> radio = Optional.empty();
+    private Optional<SpeakerSet> speakerSet = Optional.empty();
+    private Instant created;
+    private Instant modified;
 
-    public Car(UUID id, CarTemplate template, TrimLevel trimLevel) {
+    public Car(UUID id, CarTemplate template, TrimLevel trimLevel, Instant created) {
         Assert.notNull(template);
         Assert.notNull(trimLevel);
         Assert.notNull(id);
+        Assert.notNull(created);
 
+        this.modified = Instant.from(created);
+        this.created = Instant.from(created);
         this.id = id;
         this.template = template;
         this.trimLevel = trimLevel;
@@ -33,11 +40,11 @@ public class Car {
 
         for (Accessory accessory : trimLevel.getAccessories()) {
             if (accessory instanceof GPS) {
-                this.gps = (GPS) accessory;
+                this.gps = Optional.of((GPS) accessory);
             } else if (accessory instanceof Radio) {
-                this.radio = (Radio) accessory;
+                this.radio = Optional.of((Radio) accessory);
             } else if (accessory instanceof SpeakerSet) {
-                this.speakerSet = (SpeakerSet) accessory;
+                this.speakerSet = Optional.of((SpeakerSet) accessory);
             } else {
                 throw new IllegalArgumentException("Encountered unrecognized accessory");
             }
@@ -64,28 +71,28 @@ public class Car {
         return upholstery;
     }
 
-    public GPS getGps() {
+    public Optional<GPS> getGps() {
         return gps;
     }
 
     void setGps(GPS gps) {
-        this.gps = gps;
+        this.gps = Optional.of(gps);
     }
 
-    public Radio getRadio() {
+    public Optional<Radio> getRadio() {
         return radio;
     }
 
     void setRadio(Radio radio) {
-        this.radio = radio;
+        this.radio = Optional.of(radio);
     }
 
-    public SpeakerSet getSpeakerSet() {
+    public Optional<SpeakerSet> getSpeakerSet() {
         return speakerSet;
     }
 
     void setSpeakerSet(SpeakerSet speakerSet) {
-        this.speakerSet = speakerSet;
+        this.speakerSet = Optional.of(speakerSet);
     }
 
     void setEngine(Engine engine) {
@@ -127,5 +134,17 @@ public class Car {
     @Override
     public int hashCode() {
         return Objects.hash(id);
+    }
+
+    public Instant getCreated() {
+        return created;
+    }
+
+    public Instant getModified() {
+        return modified;
+    }
+
+    public void setModified(Instant modified) {
+        this.modified = Instant.from(modified);
     }
 }

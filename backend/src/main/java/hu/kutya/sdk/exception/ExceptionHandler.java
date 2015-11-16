@@ -75,21 +75,6 @@ public class ExceptionHandler {
     }
 
 
-    @org.springframework.web.bind.annotation.ExceptionHandler(value = Exception.class)
-    @ResponseBody
-    public ExceptionResponse handleAll(
-            Exception exception,
-            HttpServletRequest request,
-            HttpServletResponse response
-    ) throws Exception {
-        if (AnnotationUtils.findAnnotation(exception.getClass(), ResponseStatus.class) != null) {
-            throw exception;
-        }
-
-        response.setStatus(500);
-
-        return new ExceptionResponse();
-    }
 
     @JsonPropertyOrder({"type", "status", "message"})
     public static class ExceptionResponse {
@@ -115,7 +100,7 @@ public class ExceptionHandler {
 
         public ExceptionResponse() {
             this.status = 500;
-            this.message = "FD Internal Server Error";
+            this.message = "KUTYA Internal Server Error";
             this.type = "UnhandledException";
         }
 

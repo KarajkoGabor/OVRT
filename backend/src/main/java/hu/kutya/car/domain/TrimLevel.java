@@ -16,6 +16,7 @@ public class TrimLevel {
     private final ImmutableSet<Accessory> accessories;
 
     private TrimLevel(
+            UUID id,
             int price,
             String name,
             Engine engine,
@@ -23,13 +24,14 @@ public class TrimLevel {
             Upholstery upholstery,
             Collection<Accessory> accessories
     ) {
-        this.id = UUID.randomUUID();
-
+        Assert.notNull(id);
         Assert.isTrue(price >= 0);
         Assert.hasText(name);
         Assert.notNull(engine);
         Assert.notNull(transmission);
         Assert.notNull(upholstery);
+
+        this.id = id;
 
         this.price = price;
         this.name = name;
@@ -86,6 +88,7 @@ public class TrimLevel {
     }
 
     public static class Builder {
+        private UUID id;
         private final int price;
         private final String name;
         private final Engine engine;
@@ -95,12 +98,14 @@ public class TrimLevel {
         private final Map<String, Accessory> accessories = new HashMap<>();
 
         public Builder(
+                UUID id,
                 int price,
                 String name,
                 Engine engine,
                 Transmission transmission,
                 Upholstery upholstery
         ) {
+            this.id = id;
             this.price = price;
             this.name = name;
             this.engine = engine;
@@ -120,7 +125,7 @@ public class TrimLevel {
         }
 
         public TrimLevel build() {
-            return new TrimLevel(price, name, engine, transmission, upholstery, accessories.values());
+            return new TrimLevel(id, price, name, engine, transmission, upholstery, accessories.values());
         }
     }
 }

@@ -11,6 +11,12 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 class DbInitializer {
+    public static final UUID streetTrimLevelId = UUID.fromString("7ec53bc7-af32-46c9-a9dc-7203561cd8e7");
+    public static final UUID offRoadTrimLevelId = UUID.fromString("cd5d5dac-ff58-4257-99fc-e37f078c093f");
+    public static final UUID racingTrimLevelId = UUID.fromString("2684a6ec-99c8-4b4d-b78d-103e2a69a244");
+    public static final UUID ecoTrimLevelId = UUID.fromString("cedfe197-4478-4a35-b1f5-98dfd864f5e6");
+
+
     private HandCraftedCarTemplateRepositoryImpl carTemplateRepository;
 
     private HandCraftedCarPartRepositoryImpl carPartRepository;
@@ -44,31 +50,52 @@ class DbInitializer {
         SpeakerSet cheapSpeakerSet = new SpeakerSet(HandCraftedCarPartRepositoryImpl.cheapSpeakerSetId, 45);
         SpeakerSet normalSpeakerSet = new SpeakerSet(HandCraftedCarPartRepositoryImpl.normalSpeakerSetId, 99);
 
+        //igy kell imageUrl-t allitani:
+        luxurySpeakerSet.setImageUrl(
+                "http://img06.deviantart.net/6d9c/i/2014/136/0/b/twinkie_doge_by_rayleeman-d7inngz.jpg");
+        cheapSpeakerSet.setName("El Cheapo Speaker Set");
+        normalSpeakerSet.setName("El Normalo Speaker Set");
+
         TrimLevel streetTrimLevel =
-                new TrimLevel.Builder(600, "Street", streetEngine, goodTransmission, cheapUpholstery)
+                new TrimLevel.Builder(streetTrimLevelId, 600, "Street", streetEngine, goodTransmission, cheapUpholstery)
                         .withAccessory(polishRadio)
                         .withAccessory(cheapSpeakerSet)
                         .build();
 
         TrimLevel offRoadTrimLevel =
-                new TrimLevel.Builder(1100, "Off Road", offRoadEngine, goodTransmission, normalUpholstery)
+                new TrimLevel.Builder(
+                        offRoadTrimLevelId,
+                        1100,
+                        "Off Road",
+                        offRoadEngine,
+                        goodTransmission,
+                        normalUpholstery
+                )
                         .withAccessory(goodRadio)
                         .withAccessory(normalGPS)
                         .withAccessory(normalSpeakerSet)
                         .build();
 
         TrimLevel racingTrimLevel =
-                new TrimLevel.Builder(1850, "Racing", racingEngine, luxuryTransmission, luxuryUpholstery)
+                new TrimLevel.Builder(
+                        racingTrimLevelId,
+                        1850,
+                        "Racing",
+                        racingEngine,
+                        luxuryTransmission,
+                        luxuryUpholstery
+                )
                         .withAccessory(luxuryRadio)
                         .withAccessory(luxuryGPS)
                         .withAccessory(luxurySpeakerSet)
                         .build();
 
-        TrimLevel ecoTrimLevel = new TrimLevel.Builder(600, "Eco", ecoEngine, badTransmission, cheapUpholstery)
-                .withAccessory(romanianRadio)
-                .withAccessory(normalGPS)
-                .withAccessory(cheapSpeakerSet)
-                .build();
+        TrimLevel ecoTrimLevel =
+                new TrimLevel.Builder(ecoTrimLevelId, 600, "Eco", ecoEngine, badTransmission, cheapUpholstery)
+                        .withAccessory(romanianRadio)
+                        .withAccessory(normalGPS)
+                        .withAccessory(cheapSpeakerSet)
+                        .build();
 
         CarTemplate lada2107CarTemplate = new CarTemplate.Builder(
                 HandCraftedCarTemplateRepositoryImpl.lada2107UUID,

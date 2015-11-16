@@ -29,10 +29,12 @@ public class CarBuilder {
             throw new IncompatibleTrimLevelException();
         }
 
-        return new Car(buildCarCommand.getCarId(), carTemplate, trimLevel);
+        return new Car(buildCarCommand.getCarId(), carTemplate, trimLevel, buildCarCommand.getCreated());
     }
 
-    public Car addPartToCar(Car car, AddPartToCarCommand addPartToCarCommand) {
-        return null;
+    public void addPartToCar(Car car, AddPartToCarCommand addPartToCarCommand) {
+        CarPart part = carPartRepository.getById(addPartToCarCommand.getPartId());
+        car.accept(part);
+        car.setModified(addPartToCarCommand.getCreated());
     }
 }
