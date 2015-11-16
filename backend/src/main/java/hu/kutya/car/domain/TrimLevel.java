@@ -1,13 +1,46 @@
 package hu.kutya.car.domain;
 
-import java.util.Objects;
-import java.util.UUID;
+import java.util.*;
+
+import com.google.common.collect.ImmutableSet;
+
+import org.springframework.util.Assert;
 
 public class TrimLevel {
-    private UUID id;
-    private int price;
-    private String name;
-    //Engine, ...
+    private final UUID id;
+    private final int price;
+    private final String name;
+    private final Engine engine;
+    private final Transmission transmission;
+    private final Upholstery upholstery;
+    private final ImmutableSet<Accessory> accessories;
+
+    private TrimLevel(
+            UUID id,
+            int price,
+            String name,
+            Engine engine,
+            Transmission transmission,
+            Upholstery upholstery,
+            Collection<Accessory> accessories
+    ) {
+        Assert.notNull(id);
+        Assert.isTrue(price >= 0);
+        Assert.hasText(name);
+        Assert.notNull(engine);
+        Assert.notNull(transmission);
+        Assert.notNull(upholstery);
+
+        this.id = id;
+
+        this.price = price;
+        this.name = name;
+
+        this.engine = engine;
+        this.transmission = transmission;
+        this.upholstery = upholstery;
+        this.accessories = ImmutableSet.copyOf(accessories);
+    }
 
     public UUID getId() {
         return id;
@@ -21,10 +54,20 @@ public class TrimLevel {
         return name;
     }
 
-    public TrimLevel(int price, String name) {
-        this.id = UUID.randomUUID();
-        this.price = price;
-        this.name = name;
+    public Set<Accessory> getAccessories() {
+        return accessories;
+    }
+
+    public Upholstery getUpholstery() {
+        return upholstery;
+    }
+
+    public Transmission getTransmission() {
+        return transmission;
+    }
+
+    public Engine getEngine() {
+        return engine;
     }
 
     @Override
@@ -44,19 +87,45 @@ public class TrimLevel {
         return Objects.hash(id);
     }
 
-    //can be removed when a proper mongodb mapper is implemented
-    //also we could think about a way of wrapping the class into a proxy to inject this functionality automatically
-    @Deprecated
-    public static class Restorer {
-        public static TrimLevel restore(
-                UUID id,
-                String name,
-                int price
-        ) {
-            TrimLevel trimLevel = new TrimLevel(price, name);
-            trimLevel.id = id;
+    public static class Builder {
+        private UUID id;
+        private final int price;
+        private final String name;
+        private final Engine engine;
+        private final Transmission transmission;
+        private final Upholstery upholstery;
 
-            return trimLevel;
+        private final Map<String, Accessory> accessories = new HashMap<>();
+
+        public Builder(
+                UUID id,
+                int price,
+                String name,
+                Engine engine,
+                Transmission transmission,
+                Upholstery upholstery
+        ) {
+            this.id = id;
+            this.price = price;
+            this.name = name;
+            this.engine = engine;
+            this.transmission = transmission;
+            this.upholstery = upholstery;
+        }
+
+        public Builder withAccessory(Accessory accessory) {
+            Assert.notNull(accessory);
+
+            if (accessories.putIfAbsent(accessory.getClass().getName(), accessory) != null) {
+                throw new IllegalArgumentException(
+                        "TrimLevel already contains an accessory of type: " + accessory.getClass().getName());
+            }
+
+            return this;
+        }
+
+        public TrimLevel build() {
+            return new TrimLevel(id, price, name, engine, transmission, upholstery, accessories.values());
         }
     }
 }

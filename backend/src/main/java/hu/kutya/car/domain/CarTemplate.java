@@ -3,6 +3,7 @@ package hu.kutya.car.domain;
 import java.util.*;
 
 import com.google.common.collect.ImmutableSet;
+import hu.kutya.car.exception.TrimLevelNotFoundException;
 
 import org.springframework.util.Assert;
 
@@ -19,16 +20,13 @@ public class CarTemplate {
 
     private ImmutableSet<TrimLevel> trimLevels;
 
-    CarTemplate() {
-    }
-
-    public CarTemplate(String imageUrl, String name, String make, Collection<TrimLevel> trimLevels) {
+    private CarTemplate(UUID id, String imageUrl, String name, String make, Set<TrimLevel> trimLevels) {
         Assert.hasText(imageUrl);
         Assert.hasText(name);
         Assert.hasText(make);
         Assert.notEmpty(trimLevels);
 
-        this.id = UUID.randomUUID();
+        this.id = id;
         this.imageUrl = imageUrl;
         this.name = name;
         this.make = make;
@@ -61,23 +59,19 @@ public class CarTemplate {
         return trimLevels;
     }
 
-
-    //can be removed when a proper mongodb mapper is implemented
-    //also we could think about a way of wrapping the class into a proxy to inject this functionality automatically
-    @Deprecated
-    public static class Restorer {
-        public static CarTemplate restore(
-                UUID id,
-                String imageUrl,
-                String name,
-                String make,
-                Collection<TrimLevel> trimLevels
-        ) {
-            CarTemplate carTemplate = new CarTemplate(imageUrl, name, make, trimLevels);
-            carTemplate.id = id;
-
-            return carTemplate;
+    public TrimLevel getTrimLevel(UUID id) {
+        for (TrimLevel trimLevel : trimLevels) {
+            if (trimLevel.getId().equals(id)) {
+                return trimLevel;
+            }
         }
+
+        throw new TrimLevelNotFoundException();
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
     }
 
     @Override
@@ -92,8 +86,33 @@ public class CarTemplate {
         return Objects.equals(id, that.id);
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(id);
+    public static class Builder {
+        private final UUID id;
+        private final String imageUrl;
+        private final String name;
+        private final String make;
+
+        private final Set<TrimLevel> trimLevels = new HashSet<>();
+
+        public Builder(UUID id, String imageUrl, String name, String make) {
+            this.id = id;
+            this.imageUrl = imageUrl;
+            this.name = name;
+            this.make = make;
+        }
+
+        public Builder withTrimLevel(TrimLevel trimLevel) {
+            Assert.notNull(trimLevel);
+
+            if (!trimLevels.add(trimLevel)) {
+                throw new IllegalArgumentException("CarTemplate already contains TrimLevel \"" + trimLevel.getName() + "\".");
+            }
+
+            return this;
+        }
+
+        public CarTemplate build() {
+            return new CarTemplate(id, imageUrl, name, make, trimLevels);
+        }
     }
 }
