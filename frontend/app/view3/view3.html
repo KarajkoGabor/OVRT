@@ -1,33 +1,46 @@
-<div class="row" ng-model="car">
-    <div class="col-md-10 col-offset-2">
+<div class="row">
+    <div class="col-md-5" ng-model="carTemplate">
+        <h3>Car:</h3>
+
+        <div class="media">
+            <div class="media-left">
+                <img class="media-object" height='128' ng-src="{{getImageLink(carTemplate.imageUrl)}}" alt="{{carTemplate.make + ' ' + carTemplate.name}}">
+            </div>
+            <div class="media-body">
+                <h4 class="media-heading">{{carTemplate.make + ' ' + carTemplate.name}}</h4>
+                Base price: {{carTemplate.basePrice}}
+            </div>
+        </div>
+    </div>
+    <div class="col-md-7" ng-model="car">
         <h3>Car parts:</h3>
 
         <div class="media" ng-repeat="component in car.parts">
             <div class="media-left">
-                <a href="#">
-                    <img class="media-object" width='64' height='64' ng-src="{{getImageLink(component.imageUrl)}}" alt="...">
-                </a>
+                <img class="media-object" width='64' height='64' ng-src="{{getImageLink(component.imageUrl)}}" alt="{{getString(component.type)}}">
             </div>
             <div class="media-body">
-                <h4 class="media-heading">{{getString(component.type)}}</h4>
-                {{component.name !== null ? component.name : 'No name'}} (Price: {{component.price}})
+                <h4 class="media-heading">{{getString(component.type)}}: {{component.name !== null ? component.name : 'No name'}}</h4>
+                Price: {{component.price}}
             </div>
         </div>
     </div>
 </div>
 
+
+<h3>Available upgrades:</h3>
+
 <ul class="nav nav-tabs">
-    <li ng-repeat="ct in componentTypes" role="presentation" ng-click="setCurrentComponentType(ct)" ng-class="currentComponentType === ct ? 'active' : ''"><a href="">{{ct}}</a></li>
+    <li ng-repeat="ct in componentTypes" role="presentation" ng-click="setCurrentComponentType(ct)" ng-class="currentComponentType === ct ? 'active' : ''"><a href="">{{getString(ct)}}</a></li>
 </ul>
 <p></p>
 
-
 <div class="row">
-    <div class="col-xs-6 col-md-3" ng-repeat="component in components | filter:currentComponentType" ng-click="setComponent(component)">
+    <div class="col-xs-6 col-md-3" ng-repeat="component in compatibleComponents | filter:currentComponentType">
         <div>
-            <a class="thumbnail" href="" ng-class="{ 'active': ids[componentTypes.indexOf(currentComponentType)+1] == component.id }"><img ng-src="{{component.imageUrl}}" ></a>
+            <a class="thumbnail pointer" ng-class="{ 'active': isCurrentComponent(component) }" ng-click="setComponent(component, $event)"><img ng-src="{{getImageLink(component.imageUrl)}}" ></a>
             <div class="caption">
-                <h3 class="centeredText" ng-class="{ 'selectedComponent': ids[componentTypes.indexOf(currentComponentType)+1] == component.id }">{{component.name}}</h3>
+                <h3 class="centeredText">{{component.name !== null ? component.name : 'No name'}}</h3>
             </div>
         </div>
     </div>

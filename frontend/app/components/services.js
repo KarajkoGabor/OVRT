@@ -32,9 +32,9 @@ kutyaServices.factory('TrimLevelService', ['$resource',
 kutyaServices.factory('ComponentsService', ['$resource',
     function($resource){
         return {
-            query: function(carUUID, trimLevelUUID) {
-                return $resource(backendURI + '/car_templates/' + carUUID + '/trim_levels/' + trimLevelUUID + '/compatible_parts', [], {
-                    query: {method:'GET', isArray:false}
+            query: function(carTemplateUUID, trimLevelUUID) {
+                return $resource(backendURI + '/car_templates/' + carTemplateUUID + '/trim_levels/' + trimLevelUUID + '/compatible_parts', [], {
+                    query: {method:'GET', isArray:true}
                 }).query();
             }
         }
@@ -57,6 +57,17 @@ kutyaServices.factory('CarService', ['$resource',
             query: function(carUUID) {
                 return $resource(backendURI + '/cars/' + carUUID, [], {
                     query: {method:'GET', isArray:false}
+                }).query();
+            }
+        }
+    }]);
+
+kutyaServices.factory('CarPartUpdateService', ['$resource',
+    function($resource){
+        return {
+            query: function(carUUID, partUUID) {
+                return $resource(backendURI + '/cars/' + carUUID + '/part/' + partUUID, [], {
+                    query: {method:'POST', isArray:false}
                 }).query();
             }
         }
