@@ -5,15 +5,13 @@
 
 angular.module('myApp.view3', ['ngRoute'])
 
-    .config(['$routeProvider', function($routeProvider) {
-        $routeProvider.when('/view3/', {
-            templateUrl: 'view3/view3.html',
-            controller: 'View3Ctrl'
-        });
-    }])
 
-    .controller('View3Ctrl', ['$scope', '$routeParams', 'ComponentsService',
-        function($scope, $routeParams, ComponentsService) {
+    .controller('View3Ctrl', ['$scope', '$routeParams', 'ComponentsService', 'Page',
+        function($scope, $routeParams, ComponentsService, Page) {
+            Page.setTitle('Tuning!');
+            Page.setCurrentStep(3);
+            Page.setProgressBarClass('progress-bar-info');
+
             $scope.ids=$routeParams.ids.split(',');
             $scope.componentTypes=["engine","rims","tires","exhaust"];
             $scope.components = ComponentsService.query();
