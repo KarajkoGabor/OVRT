@@ -41,3 +41,15 @@ kutyaServices.factory('ComponentsService', ['$resource',
         }
         
     }]);
+
+kutyaServices.factory('CarBuilderService', ['$resource',
+    function($resource){
+        return {
+            query: function(carTemplateUUID, trimLevelUUID) {
+                return $resource(backendURI + '/car_templates/' + carTemplateUUID + '/trim_levels/' + trimLevelUUID + '/build', [], {
+                    query: {method:'POST', isArray:false}
+                }).query();
+            }
+        }
+
+    }]);

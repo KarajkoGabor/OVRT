@@ -9,8 +9,7 @@
 <div class="row">
     <div class="col-xs-6 col-md-3" ng-repeat="package in car.trimLevels | filter:query">
         <div>
-            <a class="thumbnail" href="#view3?ids={{chosenCarId}},en1,r1,t1,ex1"><img ng-src="imgs/package.png"></a>
-                             <!--href="#view3?ids={{chosenCarId}},{{package.id}}"-->
+            <a class="thumbnail pointer" ng-click="buildCar(package.id)"><img ng-src="imgs/package.png"></a>
             <div class="caption">
                 <h3 class="centeredText">{{package.name}}</h3>
             </div>
