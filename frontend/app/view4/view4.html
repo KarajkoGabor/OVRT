@@ -1,16 +1,29 @@
-<ul class="list-group">
-    <li class="list-group-item" ng-repeat="ct in componentTypes">
-        <div ng-repeat="selectedComponent in components" ng-show="selectedComponent.id == ids[componentTypes.indexOf(ct)+1]">
-            <b>{{ct}}:</b> {{selectedComponent.id}}
-            <span class="badge">{{selectedComponent.price}}</span>
+<div class="row" ng-model="car">
+
+    <div class="col-md-12">
+
+        <div>
+            <a class="thumbnail"><img ng-src="{{carTemplate.imageUrl}}"></a>
+
+            <div class="caption">
+                <h3 class="centeredText">{{carTemplate.make}} {{carTemplate.name}}</h3>
+            </div>
+
+            <ul class="list-group">
+                <li class="list-group-item" ng-repeat="ct in car.parts">
+                    <b>{{ct.name}}:</b>
+                    <span class="badge">{{ct.price}}</span>
+                </li>
+                <li class="list-group-item text-right">
+                    <span class="label label-success">{{totalSum}}</span>
+                </li>
+            </ul>
         </div>
-    </li>
-</ul>
 
 
-<nav>
-    <ul class="pager">
-        <li class="previous"></li>
-        <li class="next"><a href="#view5?ids={{ids[0]}},{{ids[1]}},{{ids[2]}},{{ids[3]}},{{ids[4]}}">Pay! <span aria-hidden="true">&rarr;</span></a></li>
-    </ul>
-</nav>
+        <nav>
+            <ul class="pager">
+                <li class="previous"></li>
+                <li class="next"><a href="#view5?carId={{carId}}">Next <span aria-hidden="true">&rarr;</span></a></li>
+            </ul>
+        </nav>

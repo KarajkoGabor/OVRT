@@ -4,12 +4,18 @@
 'use strict';
 
 angular.module('myApp.view5', ['ngRoute'])
-    .controller('View5Ctrl', ['$scope', '$routeParams', 'CarsService', 'Page',
-        function($scope, $routeParams, CarsService, Page) {
+    .controller('View5Ctrl', ['$scope', '$routeParams', 'CarService', 'TrimLevelService' , 'Page',
+        function($scope, $routeParams, CarService, TrimLevelService, Page) {
             Page.setTitle('Happiness!');
             Page.setCurrentStep(5);
             Page.setProgressBarClass('progress-bar-success');
 
-            $scope.ids=$routeParams.ids.split(',');
-            $scope.cars = CarsService.query();
+            $scope.carId = $routeParams.carId;
+            $scope.car = CarService.query($scope.carId);
+
+
+            $scope.car.$promise.then(function (response) {
+                $scope.carTemplate = TrimLevelService.query($scope.car.carTemplateId);
+            });
+
         }]);
