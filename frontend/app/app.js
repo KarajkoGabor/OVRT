@@ -28,20 +28,24 @@ app.factory('Page', function(){
   var title = 'default',
       currentStep = 0,
       numberOfSteps = 5,
-      progressBarClass = '';
+      progressBarClass = '',
+      labels = {
+          'carPart' : 'hu.kutya.car.domain.'
+      };
   return {
-    title: function() { return title; },
-    currentStep: function() { return currentStep; },
-    setTitle: function(newTitle) { title = newTitle;},
-    setCurrentStep: function(step) { currentStep = step; },
-    numberOfSteps: function() { return numberOfSteps; },
-    progressBarClass: function() { return progressBarClass;},
-    setProgressBarClass: function(pClass) { progressBarClass = pClass; }
+      title: function() { return title; },
+      currentStep: function() { return currentStep; },
+      setTitle: function(newTitle) { title = newTitle;},
+      setCurrentStep: function(step) { currentStep = step; },
+      numberOfSteps: function() { return numberOfSteps; },
+      progressBarClass: function() { return progressBarClass;},
+      setProgressBarClass: function(pClass) { progressBarClass = pClass; },
+      getLabel: function(label) { return labels[label]; }
   };
 });
 
 app.controller('mainController', ['$scope', 'Page',
   function($scope, Page) {
-    $scope.Page = Page;
+      $scope.Page = Page;
   }]
 );

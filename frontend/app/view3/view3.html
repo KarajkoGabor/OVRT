@@ -1,7 +1,27 @@
+<div class="row" ng-model="car">
+    <div class="col-md-10 col-offset-2">
+        <h3>Car parts:</h3>
+
+        <div class="media" ng-repeat="component in car.parts">
+            <div class="media-left">
+                <a href="#">
+                    <img class="media-object" width='64' height='64' ng-src="{{getImageLink(component.imageUrl)}}" alt="...">
+                </a>
+            </div>
+            <div class="media-body">
+                <h4 class="media-heading">{{getString(component.type)}}</h4>
+                {{component.name !== null ? component.name : 'No name'}} (Price: {{component.price}})
+            </div>
+        </div>
+    </div>
+</div>
+
 <ul class="nav nav-tabs">
     <li ng-repeat="ct in componentTypes" role="presentation" ng-click="setCurrentComponentType(ct)" ng-class="currentComponentType === ct ? 'active' : ''"><a href="">{{ct}}</a></li>
 </ul>
 <p></p>
+
+
 <div class="row">
     <div class="col-xs-6 col-md-3" ng-repeat="component in components | filter:currentComponentType" ng-click="setComponent(component)">
         <div>
@@ -16,7 +36,7 @@
 <nav>
     <ul class="pager">
         <li class="previous"></li>
-        <li class="next"><a href="#view4?ids={{ids[0]}},{{ids[1]}},{{ids[2]}},{{ids[3]}},{{ids[4]}}">Next <span aria-hidden="true">&rarr;</span></a></li>
+        <li class="next"><a href="#view4?carId={{carId}}">Next <span aria-hidden="true">&rarr;</span></a></li>
     </ul>
 </nav>
 
