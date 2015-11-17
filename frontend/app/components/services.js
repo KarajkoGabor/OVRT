@@ -31,7 +31,13 @@ kutyaServices.factory('TrimLevelService', ['$resource',
 
 kutyaServices.factory('ComponentsService', ['$resource',
     function($resource){
-        return $resource('jsons/components.json', {}, {
-            query: {method:'GET', isArray:true}
-        });
+
+        return {
+            query: function(carUUID, trimLevelUUID) {
+                return $resource(backendURI + '/car_templates/' + carUUID + '/trim_levels/' + trimLevelUUID + '/compatible_parts', [], {
+                    query: {method:'GET', isArray:false}
+                }).query();
+            }
+        }
+        
     }]);
