@@ -9,12 +9,6 @@ angular.module('myApp.view2', ['ngRoute'])
         Page.setProgressBarClass('');
 
         $scope.chosenCarId = $routeParams.carId;
-        $scope.packages = PackagesService.query();
         $scope.car = TrimLevelService.query($scope.chosenCarId);
-        /*$scope.currentPackageType="Street";
-        $scope.packageTypes=["Street","Off Road","Racing","Eco"];
 
-        $scope.setCurrentPackageType = function(selectedString) {
-            $scope.currentPackageType = selectedString;
-        };*/
 }]);

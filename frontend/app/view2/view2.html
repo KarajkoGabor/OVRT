@@ -2,10 +2,15 @@
     <li ng-repeat="pt in packageTypes" role="presentation"  ng-click="setCurrentPackageType(pt)" ng-class="currentPackageType === pt ? 'active' : ''"><a href="">{{pt}}</a></li>
 </ul>
 <p></p>-->
+
+<div class="thumbnail">
+    Search: <input ng-model="query.name">
+</div>
 <div class="row">
-    <div class="col-xs-6 col-md-3" ng-repeat="package in car.trimLevels">
+    <div class="col-xs-6 col-md-3" ng-repeat="package in car.trimLevels | filter:query">
         <div>
             <a class="thumbnail" href="#view3?ids={{chosenCarId}},en1,r1,t1,ex1"><img ng-src="imgs/package.png"></a>
+                             <!--href="#view3?ids={{chosenCarId}},{{package.id}}"-->
             <div class="caption">
                 <h3 class="centeredText">{{package.name}}</h3>
             </div>
