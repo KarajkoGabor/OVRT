@@ -56,6 +56,55 @@ class DbInitializer {
         cheapSpeakerSet.setName("El Cheapo Speaker Set");
         normalSpeakerSet.setName("El Normalo Speaker Set");
 
+        racingEngine.setImageUrl("http://www.etcracingprograms.com/images/GM_UAW/gm_engine.jpg");
+        racingEngine.setName("Cunt Destroyer Engine");
+
+        ecoEngine.setImageUrl("http://www.kursy-jazdy.com/wp-content/uploads/2015/08/zasady-ekonomicznej-jazdy.jpg");
+        ecoEngine.setName("Save the forests Engine");
+
+        streetEngine.setImageUrl("http://www.sonnysracingengines.com/images/cms/97c7bfad-4994-eda9.jpg");
+        streetEngine.setName("Fast As Hell");
+
+        offRoadEngine.setImageUrl("http://image.fourwheeler.com/f/24943766+w660+re0/131_0910_18_z%2Btruck_crate_engine_guide%2Bkatech_performance.jpg");
+        offRoadEngine.setName("Dirty");
+
+        goodTransmission.setImageUrl("http://blog.autointhebox.com/wp-content/uploads/2015/04/What-type-of-transmission-is-the-best.jpg");
+        goodTransmission.setName("Best transmission");
+
+        badTransmission.setImageUrl("http://www.huebberally.com/wp-content/gallery/01_02_2007/old_transmission.jpg");
+        badTransmission.setName("Hope and shift");
+
+        luxuryTransmission.setImageUrl("http://www.bbb.org/globalassets/local-bbbs/detroit-mi-80/media/programs/transmission1.jpg");
+        luxuryTransmission.setName("PureGold");
+
+        normalUpholstery.setImageUrl("http://carswave.com/wp-content/uploads/2015/09/Reupholster-car-seats.jpg");
+        normalUpholstery.setName("Causal as fuck");
+
+        cheapUpholstery.setImageUrl("http://vpstestbringatrailercom.c.presscdn.com/wp-content/uploads/2015/06/1974-Alfa-Romeo-2000-GTV-Interior.jpg");
+        cheapUpholstery.setName("Still sitable");
+
+        luxuryUpholstery.setImageUrl("https://s-media-cache-ak0.pinimg.com/originals/a7/95/8f/a7958f7b38f34f1fb35d3d0644a763c9.jpg");
+        luxuryUpholstery.setName("Assgasm");
+
+        romanianRadio.setImageUrl("http://www.brucesallan.com/wp-content/uploads/2013/03/Becker-Car-Stereo.jpg");
+        romanianRadio.setName("Cat costa?");
+
+        polishRadio.setImageUrl("http://www.dabonwheels.co.uk/uploaded_images/KDC-DAB4551U.jpg");
+        polishRadio.setName("Polak Voice");
+
+        luxuryRadio.setImageUrl("http://cdn.androidcommunity.com/wp-content/uploads/2012/03/DSC_0128b2-860x561.jpg");
+        luxuryRadio.setName("Eargasm");
+
+        goodRadio.setImageUrl("http://shakefire.com/sites/default/files/uploads/MEX-BT5700_front%5B1%5D.jpg");
+        goodRadio.setName("Hear me roar");
+
+        normalGPS.setImageUrl("http://www.kisaetr.hu/sites/default/files/pictures/gps-find-your-business-image.jpg");
+        normalGPS.setName("TrackOn");
+
+        luxuryGPS.setImageUrl("http://www.gpsgadgets.net/wp-content/uploads/sites/3/2007/05/expensivegps-2.jpg");
+        luxuryGPS.setName("NavigateByItself");
+
+
         TrimLevel streetTrimLevel =
                 new TrimLevel.Builder(streetTrimLevelId, 600, "Street", streetEngine, goodTransmission, cheapUpholstery)
                         .withAccessory(polishRadio)
