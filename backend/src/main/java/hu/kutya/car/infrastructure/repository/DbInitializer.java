@@ -84,10 +84,10 @@ class DbInitializer {
         cheapUpholstery.setName("Still sitable");
 
         luxuryUpholstery.setImageUrl("https://s-media-cache-ak0.pinimg.com/originals/a7/95/8f/a7958f7b38f34f1fb35d3d0644a763c9.jpg");
-        luxuryUpholstery.setName("Eyegasm");
+        luxuryUpholstery.setName("Assgasm");
 
         romanianRadio.setImageUrl("http://www.brucesallan.com/wp-content/uploads/2013/03/Becker-Car-Stereo.jpg");
-        romanianRadio.setName("Cât costă?");
+        romanianRadio.setName("Cat costa?");
 
         polishRadio.setImageUrl("http://www.dabonwheels.co.uk/uploaded_images/KDC-DAB4551U.jpg");
         polishRadio.setName("Polak Voice");
