@@ -4,36 +4,26 @@
 'use strict';
 
 angular.module('myApp.view3', ['ngRoute'])
+    .controller('View3Ctrl', ['$scope', '$routeParams', 'CarService', 'ComponentsService', 'Page', View3Ctrl]);
 
+function View3Ctrl($scope, $routeParams, CarService, ComponentsService, Page) {
+    Page.setTitle('Tuning!');
+    Page.setCurrentStep(3);
+    Page.setProgressBarClass('progress-bar-info');
 
-    .controller('View3Ctrl', ['$scope', '$routeParams', 'ComponentsService', 'Page',
-        function($scope, $routeParams, ComponentsService, Page) {
-            Page.setTitle('Tuning!');
-            Page.setCurrentStep(3);
-            Page.setProgressBarClass('progress-bar-info');
+    $scope.carId = $routeParams.carId;
+    $scope.car = CarService.query($scope.carId);
 
-            $scope.ids=$routeParams.ids.split(',');
-            $scope.componentTypes=["engine","rims","tires","exhaust"];
-            $scope.components = ComponentsService.query();
-            $scope.currentComponentType = "rims";
+    $scope.car.$promise.then(function (response) {
+        var trimlevelUUID = response.trimLevelId;
+        $scope.compatibleComponents = ComponentsService.query($scope.carId, trimlevelUUID);
+    });
 
-            $scope.setCurrentComponentType = function(selectedString) {
-                $scope.currentComponentType = selectedString;
-            };
+    $scope.getString = function(string) {
+        return string.replace(Page.getLabel('carPart'), '');
+    }
 
-            $scope.setComponent = function(component) {
-                if (component.type==="engine"){
-                    $scope.ids[1]=component.id;
-                }
-                if (component.type==="rims"){
-                    $scope.ids[2]=component.id;
-                }
-                if (component.type==="tires"){
-                    $scope.ids[3]=component.id;
-                }
-                if (component.type==="exhaust"){
-                    $scope.ids[4]=component.id;
-                }
-            };
-
-        }]);
+    $scope.getImageLink = function(link) {
+        return link === null ? 'imgs/package.png' : link;
+    }
+}
