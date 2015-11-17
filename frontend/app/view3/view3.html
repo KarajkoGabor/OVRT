@@ -16,8 +16,8 @@
         <h3>Car parts:</h3>
 
         <div class="media" ng-repeat="component in car.parts">
-            <div class="media-left">
-                <img class="media-object" width='64' height='64' ng-src="{{getImageLink(component.imageUrl)}}" alt="{{getString(component.type)}}">
+            <div class="media-left col-md-5">
+                <img class="media-object" height='64' ng-src="{{getImageLink(component.imageUrl)}}" alt="{{getString(component.type)}}">
             </div>
             <div class="media-body">
                 <h4 class="media-heading">{{getString(component.type)}}: {{component.name !== null ? component.name : 'No name'}}</h4>
@@ -41,6 +41,7 @@
             <a class="thumbnail pointer" ng-class="{ 'active': isCurrentComponent(component) }" ng-click="setComponent(component, $event)"><img ng-src="{{getImageLink(component.imageUrl)}}" ></a>
             <div class="caption">
                 <h3 class="centeredText">{{component.name !== null ? component.name : 'No name'}}</h3>
+                <div class="centeredText">Price: {{component.price}}</div>
             </div>
         </div>
     </div>
